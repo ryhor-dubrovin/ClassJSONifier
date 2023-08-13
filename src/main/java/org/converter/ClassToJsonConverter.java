@@ -1,4 +1,4 @@
-package org.runner;
+package org.converter;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -9,32 +9,7 @@ import static org.utils.ClassesConfig.CONVERTIBLE_CLASSES;
 import static org.utils.TypeUtil.getClassType;
 
 public class ClassToJsonConverter {
-    public void run() {
-        String CLASSES_PACKAGE_NAME = "org.list.classes.";
-        String divider = "==============================================================";
-
-        while (true) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter class name from [" + CLASSES_PACKAGE_NAME + "*] package to convert: ");
-            String className = scanner.next();
-            if (className.equals("Exit")) break;
-            System.out.println(divider);
-            if (Character.isLowerCase(className.charAt(0))) {
-                System.out.println("Please capitalize the class name!");
-                System.out.println(divider);
-                continue;
-            }
-            try {
-                Class<?> clazz = Class.forName(CLASSES_PACKAGE_NAME + className);
-                System.out.println(convertClassToJson(clazz));
-            } catch (ClassNotFoundException e) {
-                System.out.println("No such class in the package =( ");
-            }
-            System.out.println(divider);
-        }
-    }
-
-    private String convertClassToJson(Class<?> clazz) {
+    public String convertClassToJson(Class<?> clazz) {
         if (!CONVERTIBLE_CLASSES.contains(clazz.getSimpleName())) {
             return "\"" + getClassType(clazz.getSimpleName()) + "\"";
         }

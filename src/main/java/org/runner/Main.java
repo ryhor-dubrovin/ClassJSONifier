@@ -1,8 +1,10 @@
 package org.runner;
 
+import org.converter.ClassToJsonConverter;
+
 public class Main {
     public static void main(String[] args) {
-        ClassToJsonConverter converter = new ClassToJsonConverter();
-        converter.run();
+        ConverterRunner runner = new ConverterRunner();
+        runner.run();
     }
 }
