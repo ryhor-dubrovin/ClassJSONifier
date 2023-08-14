@@ -8,6 +8,7 @@ import static org.utils.ClassesConfig.CONVERTIBLE_CLASSES;
 
 public class FieldToJsonConverter {
     private ClassToJsonConverter classConverter = new ClassToJsonConverter();
+
     protected String convertMapToJson(Field field) {
         ParameterizedType genericType = (ParameterizedType) field.getGenericType();
         Type[] actualTypeArguments = genericType.getActualTypeArguments();
