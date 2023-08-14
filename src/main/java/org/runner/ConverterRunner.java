@@ -6,11 +6,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ConverterRunner {
-    public static final String CLASSES_PACKAGE_NAME = "org.list.classes.";
-    public static final String DIVIDER = "==============================================================";
-    private ClassToJsonConverter converter = new ClassToJsonConverter();
-
     public void start(List<String> classes) {
+        String classesPackageName = "org.list.classes.";
+        String divider = "==============================================================";
+        ClassToJsonConverter converter = new ClassToJsonConverter();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -26,18 +25,18 @@ public class ConverterRunner {
             try {
                 int choice = Integer.parseInt(userInput) - 1;
                 if (choice >= 0 && choice < classes.size()) {
-                    Class<?> clazz = Class.forName(CLASSES_PACKAGE_NAME + classes.get(choice));
-                    System.out.println(DIVIDER);
+                    Class<?> clazz = Class.forName(classesPackageName + classes.get(choice));
+                    System.out.println(divider);
                     System.out.println(converter.convertClassToJson(clazz));
                 } else {
-                    System.out.println(DIVIDER);
+                    System.out.println(divider);
                     System.out.println("Incorrect choice. Please try again.");
                 }
             } catch (NumberFormatException | ClassNotFoundException e) {
-                System.out.println(DIVIDER);
+                System.out.println(divider);
                 System.out.println("Please enter a number. Try again.");
             }
-            System.out.println(DIVIDER);
+            System.out.println(divider);
         }
     }
 }
