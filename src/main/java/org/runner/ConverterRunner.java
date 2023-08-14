@@ -5,15 +5,14 @@ import org.converter.ClassToJsonConverter;
 import java.util.Scanner;
 
 public class ConverterRunner {
-    private ClassToJsonConverter converter = new ClassToJsonConverter();
-
     public void run() {
-        String CLASSES_PACKAGE_NAME = "org.list.classes.";
+        ClassToJsonConverter converter = new ClassToJsonConverter();
+        String classesPackageName = "org.list.classes.";
         String divider = "==============================================================";
 
         while (true) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter class name from [" + CLASSES_PACKAGE_NAME + "*] package to convert: ");
+            System.out.println("Enter class name from [" + classesPackageName + "*] package to convert: ");
             String className = scanner.next();
             if (className.equals("Exit")) break;
             System.out.println(divider);
@@ -23,7 +22,7 @@ public class ConverterRunner {
                 continue;
             }
             try {
-                Class<?> clazz = Class.forName(CLASSES_PACKAGE_NAME + className);
+                Class<?> clazz = Class.forName(classesPackageName + className);
                 System.out.println(converter.convertClassToJson(clazz));
             } catch (ClassNotFoundException e) {
                 System.out.println("No such class in the package =( ");
